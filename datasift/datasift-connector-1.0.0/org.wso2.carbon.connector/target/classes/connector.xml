@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector>
+    <component name="datasift" package="org.wso2.carbon.connector" >
+        <dependency component="config"/>
+        <dependency component="core"/>
+        <dependency component="historics"/>
+        <dependency component="historicsPreview"/>
+        <dependency component="managedSources"/>
+        <dependency component="push"/>
+        <description>wso2 datasift connector library</description>
+    </component>
+</connector>

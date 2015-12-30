@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~ Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+~
+~ Licensed under the Apache License, Version 2.0 (the "License");
+~ you may not use this file except in compliance with the License.
+~ You may obtain a copy of the License at
+~
+~      http://www.apache.org/licenses/LICENSE-2.0
+~
+~ Unless required by applicable law or agreed to in writing, software
+~ distributed under the License is distributed on an "AS IS" BASIS,
+~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+~ See the License for the specific language governing permissions and
+~ limitations under the License.
+-->
+<component name="push" type="synapse/template">
+    <subComponents>
+        <component name="createPush">
+            <file>createPush.xml</file>
+            <description>Create a new Subscription to a live stream or Historics query.</description>
+        </component>
+        <component name="getPush">
+            <file>getPush.xml</file>
+            <description>Show details of the Subscriptions belonging to this user.</description>
+        </component>
+        <component name="getPushLog">
+            <file>getPushLog.xml</file>
+            <description>Retrieve details of your Push subscriptions.</description>
+        </component>
+        <component name="pull">
+            <file>pull.xml</file>
+            <description>Collect a batch of interactions from a Push queue.</description>
+        </component>
+        <component name="resumePush">
+            <file>resumePush.xml</file>
+            <description>Set a paused job running again.</description>
+        </component>
+        <component name="updatePush">
+            <file>updatePush.xml</file>
+            <description>Update the name or output parameters for an existing Subscription.</description>
+        </component>
+    </subComponents>
+</component>

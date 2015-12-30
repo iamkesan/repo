@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*  Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+*  WSO2 Inc. licenses this file to you under the Apache License,
+*  Version 2.0 (the "License"); you may not use this file except
+*  in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+-->
+<template xmlns="http://ws.apache.org/ns/synapse" name="calculateDPU">
+    <parameter name="hash" description="A unique pointer to a compiled filter."/>
+    <parameter name="historicsId" description="A unique pointer to a Historics query."/>
+    <sequence>
+        <property name="uri.var.hash" expression="$func:hash"/>
+        <property name="uri.var.historicsId" expression="$func:historicsId"/>
+        <script language="js">
+            <![CDATA[
+            var hash = mc.getProperty('uri.var.hash');
+            var historicsId = mc.getProperty('uri.var.historicsId');
+            var urlQuery = "";
+            if (hash != null && hash != "") {
+               urlQuery += "hash=" + hash+ '&';
+            }
+            if (historicsId != null && historicsId != "") {
+               urlQuery += "historics_id=" + historicsId+ '&';
+            }
+            if (urlQuery != "") {
+               urlQuery = '?' + urlQuery.substring(0, urlQuery.length - 1);
+               mc.setProperty('uri.var.urlQuery', urlQuery);
+            }
+         ]]>
+        </script>
+        <call>
+            <endpoint>
+                <http method="GET"
+                      uri-template="{uri.var.datasift.apiUrl}/{uri.var.datasift.apiVersion}/dpu{+uri.var.urlQuery}" />
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="Access-Control-Allow-Headers" scope="transport" action="remove" />
+        <header name="Access-Control-Allow-Origin" scope="transport" action="remove" />
+        <header name="Transfer-Encoding" scope="transport" action="remove" />
+        <header name="P3P" scope="transport" action="remove" />
+        <header name="X-API-Version" scope="transport" action="remove" />
+        <header name="X-Cache-Control" scope="transport" action="remove" />
+        <header name="X-Frame-Options" scope="transport" action="remove" />
+        <header name="X-RateLimit-Remaining" scope="transport" action="remove" />
+        <header name="X-RateLimit-Cost" scope="transport" action="remove" />
+        <header name="X-RateLimit-Limit" scope="transport" action="remove" />
+        <header name="X-RateLimit-Reset" scope="transport" action="remove" />
+        <header name="X-RateLimit-Reset-Ttl" scope="transport" action="remove" />
+        <header name="X-Served-By" scope="transport" action="remove" />
+        <header name="Server" scope="transport" action="remove" />
+    </sequence>
+</template>

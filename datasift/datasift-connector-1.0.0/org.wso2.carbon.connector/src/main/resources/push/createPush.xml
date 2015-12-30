@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*  Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+*  WSO2 Inc. licenses this file to you under the Apache License,
+*  Version 2.0 (the "License"); you may not use this file except
+*  in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+-->
+<template xmlns="http://ws.apache.org/ns/synapse" name="createPush">
+    <parameter name="hash" description="The hash of a stream."/>
+    <parameter name="historicId" description="The id of a Historics query."/>
+    <parameter name="name" description="The name of the Subscription that this API call will create."/>
+    <parameter name="outputType" description="The output destination type. It is one of the connectors."/>
+    <parameter name="start" description="Set the start time/date for the streaming subscription."/>
+    <parameter name="end" description="Set the end time/date for the streaming subscription."/>
+    <parameter name="initialStatus" description="Set the initial subscription status."/>
+    <parameter name="outputParams" description="The output parameters are documented individually for each of DataSift's connectors."/>
+    <sequence>
+        <property name="uri.var.hash" expression="$func:hash"/>
+        <property name="uri.var.historicId" expression="$func:historicId"/>
+        <property name="uri.var.start" expression="$func:start"/>
+        <property name="uri.var.end" expression="$func:end"/>
+        <property name="uri.var.initialStatus" expression="$func:initialStatus"/>
+        <property name="uri.var.outputParams" expression="$func:outputParams"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                "name": "$1",
+                "output_type": "$2"
+                }
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:name"/>
+                <arg evaluator="xml" expression="$func:outputType"/>
+            </args>
+        </payloadFactory>
+        <script language="js"><![CDATA[
+		    //request body param variables
+		    var hash = mc.getProperty('uri.var.hash');
+		    var historicId = mc.getProperty('uri.var.historicId');
+		    var start = mc.getProperty('uri.var.start');
+		    var end = mc.getProperty('uri.var.end');
+		    var initialStatus = mc.getProperty('uri.var.initialStatus');
+		    var outputParams = mc.getProperty('uri.var.outputParams');
+		    //Get the existing payload
+			var payload = mc.getPayloadJSON();
+			if (hash != null && hash != "") {
+				payload["hash"]=hash;
+			}
+			if (initialStatus != null && initialStatus != "") {
+				payload["initial_status"]=initialStatus;
+			}
+			if (historicId != null && historicId != "") {
+				payload["historic_id"]=historicId;
+			}
+			if (start != null && start != "") {
+				payload["start"]=start;
+			}
+			if (end != null && end != "") {
+				payload["end"]=end;
+			}
+			if (outputParams != null && outputParams != "") {
+                var txt = '{"outputParamsList":'+outputParams+'}';
+                var obj = eval ("(" + txt + ")");
+                for(var key in obj.outputParamsList){
+                    payload["key"]=obj.outputParamsList[key];
+                }
+            }
+			//Set the newly constructed payload
+			mc.setPayloadJSON(payload);
+        	]]>
+        </script>
+        <call>
+            <endpoint>
+                <http method="POST"
+                      uri-template="{uri.var.datasift.apiUrl}/{uri.var.datasift.apiVersion}/push/create"/>
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="Access-Control-Allow-Headers" scope="transport" action="remove"/>
+        <header name="Access-Control-Allow-Origin" scope="transport" action="remove"/>
+        <header name="Transfer-Encoding" scope="transport" action="remove"/>
+        <header name="P3P" scope="transport" action="remove"/>
+        <header name="X-API-Version" scope="transport" action="remove"/>
+        <header name="X-Cache-Control" scope="transport" action="remove"/>
+        <header name="X-Frame-Options" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Remaining" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Cost" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Limit" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Reset" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Reset-Ttl" scope="transport" action="remove"/>
+        <header name="X-Served-By" scope="transport" action="remove"/>
+        <header name="Server" scope="transport" action="remove"/>
+    </sequence>
+</template>

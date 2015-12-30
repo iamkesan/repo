@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*  Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+*  WSO2 Inc. licenses this file to you under the Apache License,
+*  Version 2.0 (the "License"); you may not use this file except
+*  in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+-->
+<template xmlns="http://ws.apache.org/ns/synapse" name="createHistoricsPreview">
+    <parameter name="start" description="UTC timestamp to start the report from."/>
+    <parameter name="hash" description="The hash of the filter to preview."/>
+    <parameter name="sources" description="Comma-separated list of data sources to include."/>
+    <parameter name="parameters"
+               description="A list of at least one but no more than 20 Historics Preview parameters each formatted as a comma-separated string."/>
+    <parameter name="end" description="UTC timestamp at which to end the report."/>
+    <sequence>
+        <property name="uri.var.end" expression="$func:end"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                "start": "$1",
+                "hash": "$2",
+                "sources": "$3",
+                "parameters": "$4"
+                }
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:start"/>
+                <arg evaluator="xml" expression="$func:hash"/>
+                <arg evaluator="xml" expression="$func:sources"/>
+                <arg evaluator="xml" expression="$func:parameters"/>
+            </args>
+        </payloadFactory>
+        <script language="js"><![CDATA[
+		    //request body param variables
+		    var end = mc.getProperty('uri.var.end');
+		    //Get the existing payload
+			var payload = mc.getPayloadJSON();
+			if (end != null && end != "") {
+				payload["end"]=end;
+			}
+			//Set the newly constructed payload
+			mc.setPayloadJSON(payload);
+        	]]>
+        </script>
+        <call>
+            <endpoint>
+                <http method="POST"
+                      uri-template="{uri.var.datasift.apiUrl}/{uri.var.datasift.apiVersion}/preview/create"/>
+            </endpoint>
+        </call>
+        <!-- Remove response custom header information -->
+        <header name="Access-Control-Allow-Headers" scope="transport" action="remove"/>
+        <header name="Access-Control-Allow-Origin" scope="transport" action="remove"/>
+        <header name="Transfer-Encoding" scope="transport" action="remove"/>
+        <header name="P3P" scope="transport" action="remove"/>
+        <header name="X-API-Version" scope="transport" action="remove"/>
+        <header name="X-Cache-Control" scope="transport" action="remove"/>
+        <header name="X-Frame-Options" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Remaining" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Cost" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Limit" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Reset" scope="transport" action="remove"/>
+        <header name="X-RateLimit-Reset-Ttl" scope="transport" action="remove"/>
+        <header name="X-Served-By" scope="transport" action="remove"/>
+        <header name="Server" scope="transport" action="remove"/>
+    </sequence>
+</template>

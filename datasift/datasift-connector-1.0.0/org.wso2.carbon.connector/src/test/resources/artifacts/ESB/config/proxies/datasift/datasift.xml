@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="datasift" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
+   <target>
+      <inSequence>
+         <property name="apiUrl" expression="json-eval($.apiUrl)"/>
+         <property name="apiVersion" expression="json-eval($.apiVersion)"/>
+         <property name="username" expression="json-eval($.username)"/>
+         <property name="apiKey" expression="json-eval($.apiKey)"/>
+
+         <property name="indexName" expression="json-eval($.indexName)" />
+         <property name="type" expression="json-eval($.type)" />
+         <property name="terminateAfter" expression="json-eval($.terminateAfter)" />
+         <property name="from" expression="json-eval($.from)" />
+         <property name="size" expression="json-eval($.size)" />
+         <property name="version" expression="json-eval($.version)" />
+         <property name="scroll" expression="json-eval($.scroll)" />
+         <property name="pretty" expression="json-eval($.pretty)" />
+         <property name="human" expression="json-eval($.human)" />
+         <property name="id" expression="json-eval($.id)" />
+         <property name="refresh" expression="json-eval($.refresh)" />
+         <property name="timeout" expression="json-eval($.timeout)" />
+         <property name="script" expression="json-eval($.script)" />
+         <property name="message" expression="json-eval($.message)" />
+         <property name="routingName" expression="json-eval($.routingName)" />
+         <property name="consistency" expression="json-eval($.consistency)" />
+         <property name="user" expression="json-eval($.user)" />
+         <property name="postDate" expression="json-eval($.postDate)" />
+         <property name="format" expression="json-eval($.format)" />
+         <property name="filterPath" expression="json-eval($.filterPath)" />
+         <property name="flatSettings" expression="json-eval($.flatSettings)" />
+         <property name="callback" expression="json-eval($.callback)" />
+         <property name="case" expression="json-eval($.case)" />
+         <property name="versionType" expression="json-eval($.versionType)" />
+         <property name="operationType" expression="json-eval($.operationType)" />
+         <property name="timeStamp" expression="json-eval($.timeStamp)" />
+         <property name="timeToLive" expression="json-eval($.timeToLive)" />
+         <property name="source" expression="json-eval($.source)"/>
+         <property name="sourceExclude" expression="json-eval($.sourceExclude)"/>
+         <property name="sourceInclude" expression="json-eval($.sourceInclude)"/>
+         <property name="fields" expression="json-eval($.fields)"/>
+         <property name="routing" expression="json-eval($.routing)"/>
+         <property name="preference" expression="json-eval($.preference)"/>
+         <property name="realtime" expression="json-eval($.realtime)"/>
+         <property name="docs" expression="json-eval($.docs)" />
+         <property name="settings" expression="json-eval($.settings)" />
+         <property name="parentId" expression="json-eval($.parentId)" />
+         <property name="childId" expression="json-eval($.childId)" />
+         <property name="tagValue" expression="json-eval($.tagValue)" />
+         <property name="parentType" expression="json-eval($.parentType)" />
+
+          <datasift.init>
+              <apiUrl>{$ctx:apiUrl}</apiUrl>
+              <apiVersion>{$ctx:apiVersion}</apiVersion>
+              <username>{$ctx:username}</username>
+              <apiKey>{$ctx:apiKey}</apiKey>
+          </datasift.init>
+         
+         <switch source="get-property('transport', 'Action')">
+            <case regex="urn:getBalance">
+               <datasift.searchByQuery/>
+
+            </case>
+
+         </switch>
+         <respond />
+      </inSequence>
+      <outSequence>
+         <log />
+         <send />
+      </outSequence>
+   </target>
+   <description />
+</proxy>
+                                

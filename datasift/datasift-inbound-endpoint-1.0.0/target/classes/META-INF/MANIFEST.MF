@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Export-Package: org.wso2.carbon.inbound.datasift.poll;uses:="org.apach
+ e.synapse,org.apache.commons.logging,org.wso2.carbon.inbound.endpoint
+ .protocol.generic,com.datasift.client,com.datasift.client.core,com.da
+ tasift.client.stream,org.apache.synapse.core"
+Built-By: kesavan
+Build-Jdk: 1.7.0_07
+Bundle-Version: 1.0.0
+Tool: Bnd-0.0.238
+Bundle-Name: Datasift Polling Consumer
+Bnd-LastModified: 1445172107962
+Created-By: Apache Maven Bundle Plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.synapse.datasift.poll.class
+Import-Package: com.datasift.client;resolution:=optional,com.datasift.
+ client.core;resolution:=optional,com.datasift.client.stream;resolutio
+ n:=optional,javax.xml.namespace;version="0.0.0",org.apache.commons.lo
+ gging;resolution:=optional;version="1.2",org.apache.synapse;resolutio
+ n:=optional,org.apache.synapse.core;resolution:=optional,org.wso2.car
+ bon.inbound.datasift.poll;resolution:=optional,org.wso2.carbon.inboun
+ d.endpoint.protocol.generic;resolution:=optional;version="4.4"
+
