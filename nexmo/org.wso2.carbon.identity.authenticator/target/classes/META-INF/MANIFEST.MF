@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Export-Package: org.wso2.carbon.identity.authenticator.nexmo;uses:="or
+ g.apache.commons.logging,org.wso2.carbon.identity.application.authent
+ ication.framework,org.wso2.carbon.identity.application.authentication
+ .framework.util,org.wso2.carbon.identity.application.common.model,org
+ .wso2.carbon.identity.application.authentication.framework.context,ja
+ vax.net.ssl,org.wso2.carbon.identity.application.authentication.frame
+ work.exception,com.google.gson,javax.servlet.http";version="1.0.0",or
+ g.wso2.carbon.identity.authenticator.nexmo.internal;uses:="org.wso2.c
+ arbon.identity.authenticator.nexmo,org.apache.commons.logging,org.wso
+ 2.carbon.identity.application.authentication.framework,org.osgi.frame
+ work,org.osgi.service.component";version="1.0.0"
+Service-Component: OSGI-INF/serviceComponents.xml
+Built-By: kesavan
+Tool: Bnd-1.43.0
+Bundle-Name: org.wso2.carbon.identity.authenticator.Nexmo
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.7.0_07
+Bundle-Version: 1.0.0
+Bnd-LastModified: 1447352743580
+Bundle-ManifestVersion: 2
+Import-Package: com.google.gson;resolution:=optional;version="[2.1,3)"
+ ,javax.net.ssl;resolution:=optional,javax.servlet;version="[2.6,3)",j
+ avax.servlet.http;version="[2.6,3)",org.apache.commons.logging;versio
+ n="1.0.4",org.osgi.framework;version="[1.7,2)",org.osgi.service.compo
+ nent;resolution:=optional;version="[1.2,2)",org.wso2.carbon.identity.
+ application.authentication.framework;version="[4.2,5)",org.wso2.carbo
+ n.identity.application.authentication.framework.context;version="[4.2
+ ,5)",org.wso2.carbon.identity.application.authentication.framework.ex
+ ception;version="[4.2,5)",org.wso2.carbon.identity.application.authen
+ tication.framework.util;version="[4.2,5)",org.wso2.carbon.identity.ap
+ plication.common.model;resolution:=optional;version="[4.2,5)"
+Bundle-SymbolicName: org.wso2.carbon.identity.authenticator.Nexmo
+

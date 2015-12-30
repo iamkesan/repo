@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Export-Package: org.wso2.carbon.identity.authenticator;uses:="org.wso2
+ .carbon.identity.application.common.model,org.apache.commons.logging,
+ org.wso2.carbon.identity.application.authentication.framework.context
+ ,org.wso2.carbon.identity.application.authentication.framework,org.ws
+ o2.carbon.identity.application.authentication.framework.exception,org
+ .wso2.carbon.identity.application.authentication.framework.model,com.
+ google.gson,javax.servlet.http,javax.net.ssl,org.apache.commons.codec
+ .binary";version="1.0.0"
+Service-Component: OSGI-INF/serviceComponents.xml
+Built-By: kesavan
+Tool: Bnd-1.43.0
+Bundle-Name: org.wso2.carbon.identity.authenticator.MePIN
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.7.0_07
+Bundle-Version: 1.0.0
+Bnd-LastModified: 1447824016384
+Bundle-ManifestVersion: 2
+Import-Package: com.google.gson;resolution:=optional;version="[2.3,3)"
+ ,javax.net.ssl;resolution:=optional,javax.servlet;version="[2.6,3)",j
+ avax.servlet.http;version="[2.6,3)",org.apache.commons.codec.binary;r
+ esolution:=optional,org.apache.commons.logging;version="1.0.4",org.os
+ gi.framework;version="[1.7,2)",org.osgi.service.component;resolution:
+ =optional;version="[1.2,2)",org.wso2.carbon.identity.application.auth
+ entication.framework;version="[5.0,6)",org.wso2.carbon.identity.appli
+ cation.authentication.framework.context;version="[5.0,6)",org.wso2.ca
+ rbon.identity.application.authentication.framework.exception;version=
+ "[5.0,6)",org.wso2.carbon.identity.application.authentication.framewo
+ rk.model;version="[5.0,6)",org.wso2.carbon.identity.application.commo
+ n.model;resolution:=optional;version="[5.0,6)",org.wso2.carbon.identi
+ ty.authenticator;resolution:=optional
+Bundle-SymbolicName: org.wso2.carbon.identity.authenticator.MePIN
+
