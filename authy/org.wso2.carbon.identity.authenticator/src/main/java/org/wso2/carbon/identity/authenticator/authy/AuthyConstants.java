@@ -39,7 +39,6 @@ public class AuthyConstants {
     public static final String AUTHY_APIKEY = "apiKey";
     public static final String AUTHY_APIKEY_PARAM = "?api_key=";
     public static final String AUTHY_FORCE = "&force=true";
-    public static final String AUTHY_ID  = "authyId";
     public static final String AUTHY_METHOD_SMS  = "sms";
     public static final String AUTHY_METHOD_CALL  = "call";
     public static final String AUTHY_APPROVAL  = "/approval_requests";
@@ -57,6 +56,8 @@ public class AuthyConstants {
     public static final String AUTHY_TRUE = "true";
     public static final String AUTHY_TOKEN = "token";
     public static final String AUTHY_IS_VALID= "is valid";
+    public static final String AUTHY_ID = "authyId";
+    public static final String AUTHY_ID_CLAIM_URI  = "http://wso2.org/claims/authyId";
 
     public static final String FAILED = "Failed: ";
 }

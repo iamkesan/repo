@@ -25,6 +25,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.application.authentication.framework.AbstractApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.FederatedApplicationAuthenticator;
+import org.wso2.carbon.identity.application.authentication.framework.LocalApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
 import org.wso2.carbon.identity.application.authentication.framework.exception.AuthenticationFailedException;
 import org.wso2.carbon.identity.application.authentication.framework.exception.InvalidCredentialsException;
@@ -32,6 +33,10 @@ import org.wso2.carbon.identity.application.authentication.framework.model.Authe
 import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkConstants;
 import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkUtils;
 import org.wso2.carbon.identity.application.common.model.Property;
+import org.wso2.carbon.identity.core.util.IdentityTenantUtil;
+import org.wso2.carbon.user.core.UserRealm;
+import org.wso2.carbon.user.core.service.RealmService;
+import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,6 +66,7 @@ public class AuthyAppTokenAuthenticator extends AbstractApplicationAuthenticator
         System.out.println("canHandle Hello to all");
         String confirmationCode = request.getParameter("confirmationCode");
 
+
         return confirmationCode != null;
     }
 
@@ -73,6 +79,8 @@ public class AuthyAppTokenAuthenticator extends AbstractApplicationAuthenticator
             throws AuthenticationFailedException {
 
         System.out.println("Initiate: -----------------------------------------------------");
+        String authyId = getClaim(context);
+        log.info(authyId);
         authenticatorProperties = context.getAuthenticatorProperties();
         String loginPage = "/authenticationendpoint/authy.jsp";
         String queryParams = FrameworkUtils
@@ -87,7 +95,7 @@ public class AuthyAppTokenAuthenticator extends AbstractApplicationAuthenticator
 
         try {
             response.sendRedirect(response.encodeRedirectURL(loginPage + ("?" + queryParams))
-                                  + "&authenticators=" + getName() + ":" + "LOCAL" + retryParam);
+                                  + "&authyId=" + authyId + "&authenticators=" + getName() + retryParam);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -116,8 +124,10 @@ public class AuthyAppTokenAuthenticator extends AbstractApplicationAuthenticator
     @Override
     protected void processAuthenticationResponse(HttpServletRequest request, HttpServletResponse response,
         AuthenticationContext context) throws AuthenticationFailedException {
+
+        String authyId = request.getParameter(AuthyConstants.AUTHY_ID);
         String confirmationCode = request.getParameter("confirmationCode");
-        String s=new AuthyTransactions().verifyToken(confirmationCode,"8632251", authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY));
+        String s=new AuthyTransactions().verifyToken(confirmationCode,authyId, authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY));
         boolean isAuthenticated = false;
         JsonObject responseJson = new JsonParser().parse(s).getAsJsonObject();
         System.out.println(responseJson);
@@ -139,7 +149,7 @@ public class AuthyAppTokenAuthenticator extends AbstractApplicationAuthenticator
 
             throw new InvalidCredentialsException("user authentication failed due to invalid credentials.");
         }
-        else context.setSubject(AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier("8632251"));
+        else context.setSubject(AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier(authyId));
     }
 
     /**
@@ -166,6 +176,41 @@ public class AuthyAppTokenAuthenticator extends AbstractApplicationAuthenticator
         return request.getParameter(FrameworkConstants.SESSION_DATA_KEY);
     }
 
+    public String getClaim(AuthenticationContext context) throws AuthenticationFailedException {
+        String username = null;
+        String authyId = null;
+
+        //Getting the last authenticated local user
+        for (Integer stepMap : context.getSequenceConfig().getStepMap().keySet()) {
+            if (context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser() != null &&
+                context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedAutenticator()
+                        .getApplicationAuthenticator() instanceof LocalApplicationAuthenticator) {
+                username = String.valueOf(context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser());
+                break;
+            }
+        }
+        if (username != null) {
+            UserRealm userRealm = null;
+            try {
+                String tenantDomain = MultitenantUtils.getTenantDomain(username);
+                int tenantId = IdentityTenantUtil.getTenantIdOfUser(username);
+                RealmService realmService = IdentityTenantUtil.getRealmService();
+                userRealm = (UserRealm) realmService.getTenantUserRealm(tenantId);
+                username = MultitenantUtils.getTenantAwareUsername(username);
+                if (userRealm != null) {
+                    authyId = userRealm.getUserStoreManager().getUserClaimValue(username, AuthyConstants.AUTHY_ID_CLAIM_URI,
+                                                                                null).toString();
+                } else {
+                    throw new AuthenticationFailedException(
+                            "Cannot find the user claim for the given username");
+                }
+            } catch (org.wso2.carbon.user.api.UserStoreException e) {
+                throw new AuthenticationFailedException(
+                        "Cannot find the user claim for the given username");
+            }
+        }
+        return authyId;
+    }
 
 }
 

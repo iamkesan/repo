@@ -25,12 +25,17 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.application.authentication.framework.AbstractApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.FederatedApplicationAuthenticator;
+import org.wso2.carbon.identity.application.authentication.framework.LocalApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
 import org.wso2.carbon.identity.application.authentication.framework.exception.AuthenticationFailedException;
 import org.wso2.carbon.identity.application.authentication.framework.model.AuthenticatedUser;
 import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkConstants;
 import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkUtils;
 import org.wso2.carbon.identity.application.common.model.Property;
+import org.wso2.carbon.identity.core.util.IdentityTenantUtil;
+import org.wso2.carbon.user.core.UserRealm;
+import org.wso2.carbon.user.core.service.RealmService;
+import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -73,6 +78,8 @@ public class AuthyOneTouchAuthenticator extends AbstractApplicationAuthenticator
             throws AuthenticationFailedException {
         //Add your code here to initiate the request
         System.out.println("Initiate: -----------------------------------------------------");
+        String authyId = getClaim(context);
+        log.info(authyId);
         authenticatorProperties = context.getAuthenticatorProperties();
         String loginPage = "/authenticationendpoint/authyonetouch.jsp";
         String queryParams = FrameworkUtils
@@ -88,7 +95,7 @@ public class AuthyOneTouchAuthenticator extends AbstractApplicationAuthenticator
 
         try {
             response.sendRedirect(response.encodeRedirectURL(loginPage + ("?" + queryParams))
-                                  + "&authenticators=" + getName() + ":" + "LOCAL" + retryParam);
+                                  + "&authyId=" + authyId + "&authenticators=" + getName() + retryParam);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -154,7 +161,9 @@ public class AuthyOneTouchAuthenticator extends AbstractApplicationAuthenticator
             throws AuthenticationFailedException {
         try {
             boolean isAuthenticated = false;
-            String s = new AuthyTransactions().createApprovalRequest("8632251", authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY), "Hello", "aaa", "bbb");
+
+            String authyId = request.getParameter(AuthyConstants.AUTHY_ID);
+            String s = new AuthyTransactions().createApprovalRequest(authyId, authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY), "Hello", "aaa", "bbb");
             JsonObject responseJson = new JsonParser().parse(s).getAsJsonObject();
             String transactionStatus = responseJson.getAsJsonPrimitive(AuthyConstants.AUTHY_SUCCESS).getAsString();
             if (transactionStatus.equals(AuthyConstants.AUTHY_TRUE)) {
@@ -193,7 +202,7 @@ public class AuthyOneTouchAuthenticator extends AbstractApplicationAuthenticator
                     }
                 }
                 if (isAuthenticated) {
-                    context.setSubject(AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier("8632251"));
+                    context.setSubject(AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier(authyId));
                 } else {
                     throw new AuthenticationFailedException("Unable to confirm the MePIN transaction");
                 }
@@ -232,6 +241,40 @@ public class AuthyOneTouchAuthenticator extends AbstractApplicationAuthenticator
         return request.getParameter(FrameworkConstants.SESSION_DATA_KEY);
     }
 
+    public String getClaim(AuthenticationContext context) throws AuthenticationFailedException {
+        String username = null;
+        String authyId = null;
 
+        //Getting the last authenticated local user
+        for (Integer stepMap : context.getSequenceConfig().getStepMap().keySet()) {
+            if (context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser() != null &&
+                context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedAutenticator()
+                        .getApplicationAuthenticator() instanceof LocalApplicationAuthenticator) {
+                username = String.valueOf(context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser());
+                break;
+            }
+        }
+        if (username != null) {
+            UserRealm userRealm = null;
+            try {
+                String tenantDomain = MultitenantUtils.getTenantDomain(username);
+                int tenantId = IdentityTenantUtil.getTenantIdOfUser(username);
+                RealmService realmService = IdentityTenantUtil.getRealmService();
+                userRealm = (UserRealm) realmService.getTenantUserRealm(tenantId);
+                username = MultitenantUtils.getTenantAwareUsername(username);
+                if (userRealm != null) {
+                    authyId = userRealm.getUserStoreManager().getUserClaimValue(username, AuthyConstants.AUTHY_ID_CLAIM_URI,
+                                                                                null).toString();
+                } else {
+                    throw new AuthenticationFailedException(
+                            "Cannot find the user claim for the given username");
+                }
+            } catch (org.wso2.carbon.user.api.UserStoreException e) {
+                throw new AuthenticationFailedException(
+                        "Cannot find the user claim for the given username");
+            }
+        }
+        return authyId;
+    }
 }
 

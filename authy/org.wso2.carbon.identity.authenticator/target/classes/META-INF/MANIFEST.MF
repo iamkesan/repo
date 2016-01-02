@@ -1,16 +1,20 @@
 Manifest-Version: 1.0
 Export-Package: org.wso2.carbon.identity.authenticator.authy;uses:="or
- g.apache.commons.logging,org.wso2.carbon.identity.application.authent
- ication.framework,org.wso2.carbon.identity.application.authentication
- .framework.util,org.wso2.carbon.identity.application.authentication.f
- ramework.model,org.wso2.carbon.identity.application.common.model,org.
- wso2.carbon.identity.application.authentication.framework.context,org
- .wso2.carbon.identity.application.authentication.framework.exception,
- com.google.gson,javax.servlet.http,javax.net.ssl";version="1.0.0",org
- .wso2.carbon.identity.authenticator.authy.internal;uses:="org.wso2.ca
- rbon.identity.authenticator.authy,org.apache.commons.logging,org.wso2
- .carbon.identity.application.authentication.framework,org.osgi.framew
- ork,org.osgi.service.component";version="1.0.0"
+ g.wso2.carbon.identity.core.util,org.apache.commons.logging,org.wso2.
+ carbon.user.api,org.wso2.carbon.identity.application.authentication.f
+ ramework,org.wso2.carbon.identity.application.authentication.framewor
+ k.config.model,org.wso2.carbon.user.core,org.wso2.carbon.identity.app
+ lication.authentication.framework.util,org.wso2.carbon.identity.appli
+ cation.authentication.framework.model,org.wso2.carbon.identity.applic
+ ation.common.model,org.wso2.carbon.utils.multitenancy,org.wso2.carbon
+ .user.core.service,org.wso2.carbon.identity.application.authenticatio
+ n.framework.context,org.wso2.carbon.identity.application.authenticati
+ on.framework.exception,com.google.gson,javax.servlet.http,javax.net.s
+ sl";version="1.0.0",org.wso2.carbon.identity.authenticator.authy.inte
+ rnal;uses:="org.wso2.carbon.identity.authenticator.authy,org.apache.c
+ ommons.logging,org.wso2.carbon.identity.application.authentication.fr
+ amework,org.osgi.framework,org.osgi.service.component";version="1.0.0
+ "
 Service-Component: OSGI-INF/serviceComponents.xml
 Built-By: kesavan
 Tool: Bnd-1.43.0
@@ -18,7 +22,7 @@ Bundle-Name: org.wso2.carbon.identity.authenticator.Authy
 Created-By: Apache Maven Bundle Plugin
 Build-Jdk: 1.7.0_07
 Bundle-Version: 1.0.0
-Bnd-LastModified: 1451411536522
+Bnd-LastModified: 1451589184832
 Bundle-ManifestVersion: 2
 Import-Package: com.google.gson;resolution:=optional;version="[2.1,3)"
  ,javax.net.ssl;resolution:=optional,javax.servlet;version="[2.6,3)",j
@@ -26,12 +30,18 @@ Import-Package: com.google.gson;resolution:=optional;version="[2.1,3)"
  n="1.0.4",org.osgi.framework;version="[1.7,2)",org.osgi.service.compo
  nent;resolution:=optional;version="[1.2,2)",org.wso2.carbon.identity.
  application.authentication.framework;version="[5.0,6)",org.wso2.carbo
- n.identity.application.authentication.framework.context;version="[5.0
- ,6)",org.wso2.carbon.identity.application.authentication.framework.ex
- ception;version="[5.0,6)",org.wso2.carbon.identity.application.authen
- tication.framework.model;version="[5.0,6)",org.wso2.carbon.identity.a
- pplication.authentication.framework.util;version="[5.0,6)",org.wso2.c
- arbon.identity.application.common.model;resolution:=optional;version=
- "[5.0,6)"
+ n.identity.application.authentication.framework.config.model;version=
+ "[5.0,6)",org.wso2.carbon.identity.application.authentication.framewo
+ rk.context;version="[5.0,6)",org.wso2.carbon.identity.application.aut
+ hentication.framework.exception;version="[5.0,6)",org.wso2.carbon.ide
+ ntity.application.authentication.framework.model;version="[5.0,6)",or
+ g.wso2.carbon.identity.application.authentication.framework.util;vers
+ ion="[5.0,6)",org.wso2.carbon.identity.application.common.model;resol
+ ution:=optional;version="[5.0,6)",org.wso2.carbon.identity.core.util;
+ resolution:=optional;version="[5.0,6)",org.wso2.carbon.user.api;resol
+ ution:=optional;version="[1.0,2)",org.wso2.carbon.user.core;resolutio
+ n:=optional;version="[4.4,5)",org.wso2.carbon.user.core.service;resol
+ ution:=optional;version="[4.4,5)",org.wso2.carbon.utils.multitenancy;
+ resolution:=optional;version="[4.4,5)"
 Bundle-SymbolicName: org.wso2.carbon.identity.authenticator.Authy
 

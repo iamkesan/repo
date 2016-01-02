@@ -35,7 +35,6 @@ import org.wso2.carbon.identity.application.authentication.framework.util.Framew
 import org.wso2.carbon.identity.application.common.model.Property;
 import org.wso2.carbon.identity.core.util.IdentityTenantUtil;
 import org.wso2.carbon.user.core.UserRealm;
-import org.wso2.carbon.user.core.UserStoreException;
 import org.wso2.carbon.user.core.service.RealmService;
 import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
 
@@ -76,17 +75,20 @@ public class AuthySMSAuthenticator extends AbstractApplicationAuthenticator
      */
     @Override
     protected void initiateAuthenticationRequest(HttpServletRequest request,
-                                                 HttpServletResponse response, AuthenticationContext context)
+                                                 HttpServletResponse response,
+                                                 AuthenticationContext context)
             throws AuthenticationFailedException {
         authenticatorProperties = context.getAuthenticatorProperties();
         //Add your code here to initiate the request
         System.out.println("Initiate: -----------------------------------------------------");
+        String authyId = getClaim(context);
+        log.info(authyId);
         String loginPage = "/authenticationendpoint/authy.jsp";
         String queryParams = FrameworkUtils
                 .getQueryStringWithFrameworkContextId(context.getQueryParams(),
                                                       context.getCallerSessionKey(),
                                                       context.getContextIdentifier());
-        String s = new AuthyTransactions().sendToken(AuthyConstants.AUTHY_METHOD_SMS, "8632251", authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY));
+        String s = new AuthyTransactions().sendToken(AuthyConstants.AUTHY_METHOD_SMS, authyId, authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY));
         System.out.println(s);
         String retryParam = "";
 
@@ -96,7 +98,7 @@ public class AuthySMSAuthenticator extends AbstractApplicationAuthenticator
 
         try {
             response.sendRedirect(response.encodeRedirectURL(loginPage + ("?" + queryParams))
-                                  + "&authenticators=" + getName() + ":" + "LOCAL" + retryParam);
+                                  + "&authyId=" + authyId + "&authenticators=" + getName() + retryParam);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,21 +123,24 @@ public class AuthySMSAuthenticator extends AbstractApplicationAuthenticator
      * Process the response of the Authy end-point
      */
     @Override
-    protected void processAuthenticationResponse(HttpServletRequest request, HttpServletResponse response,
-                                                 AuthenticationContext context) throws AuthenticationFailedException {
+    protected void processAuthenticationResponse(HttpServletRequest request,
+                                                 HttpServletResponse response,
+                                                 AuthenticationContext context)
+            throws AuthenticationFailedException {
         //Add your code here
+        String authyId = request.getParameter(AuthyConstants.AUTHY_ID);
         String confirmationCode = request.getParameter("confirmationCode");
-        String s=new AuthyTransactions().verifyToken(confirmationCode,"8632251", authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY));
+        String s = new AuthyTransactions().verifyToken(confirmationCode, authyId, authenticatorProperties.get(AuthyConstants.AUTHY_APIKEY));
         boolean isAuthenticated = false;
         JsonObject responseJson = new JsonParser().parse(s).getAsJsonObject();
         System.out.println(responseJson);
         log.debug("MePin JSON Response: " + responseJson);
-        String transactionStatus= responseJson.getAsJsonPrimitive(AuthyConstants.AUTHY_TOKEN).getAsString();
+        String transactionStatus = responseJson.getAsJsonPrimitive(AuthyConstants.AUTHY_TOKEN).getAsString();
 
         if (transactionStatus.equals(AuthyConstants.AUTHY_IS_VALID)) {
             System.out.println("Process: -----------------------------------------------------");
             System.out.println(transactionStatus);
-            isAuthenticated=true;
+            isAuthenticated = true;
         } else {
             throw new AuthenticationFailedException("Can not confirm authorization code.");
         }
@@ -146,8 +151,9 @@ public class AuthySMSAuthenticator extends AbstractApplicationAuthenticator
             }
 
             throw new InvalidCredentialsException("user authentication failed due to invalid credentials.");
+        } else {
+            context.setSubject(AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier(authyId));
         }
-        else context.setSubject(AuthenticatedUser.createLocalAuthenticatedUserFromSubjectIdentifier("8632251"));
     }
 
     /**
@@ -175,43 +181,40 @@ public class AuthySMSAuthenticator extends AbstractApplicationAuthenticator
     }
 
     public String getClaim(AuthenticationContext context) throws AuthenticationFailedException {
-            String username = null;
-         String authyId = null;
+        String username = null;
+        String authyId = null;
 
-                   //Getting the last authenticated local user
-                    for (Integer stepMap : context.getSequenceConfig().getStepMap().keySet())
-                        if (context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser() != null &&
-                                context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedAutenticator()
-                                .getApplicationAuthenticator() instanceof LocalApplicationAuthenticator) {
-                            username = String.valueOf(context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser());
-                        break;
-                    }
-            if (username != null) {
-                    UserRealm userRealm = null;
-                    try {
-                            String tenantDomain = MultitenantUtils.getTenantDomain(username);
-                            int tenantId = IdentityTenantUtil.getTenantIdOfUser(username);
-                        RealmService realmService = IdentityTenantUtil.getRealmService();
-                            userRealm = (UserRealm) realmService.getTenantUserRealm(tenantId);
-                            username = MultitenantUtils.getTenantAwareUsername(username);
-                            if (userRealm != null) {
-                                authyId = userRealm.getUserStoreManager().getUserClaimValue(username, AuthyConstants.AUTHY_ID,
-                                                                                           null).toString();
-                            } else {
-                                throw new AuthenticationFailedException(
-                                        "Cannot find the user claim for the given authyId: " + authyId);
-                            }
-                        } catch (UserStoreException e) {
-                            throw new AuthenticationFailedException("Error while getting the user realm" + e.getMessage(), e);
-                        } catch (org.wso2.carbon.user.api.UserStoreException e) {
-                        e.printStackTrace();
-                    } catch (AuthenticationFailedException e) {
-                        e.printStackTrace();
-                    }
+        //Getting the last authenticated local user
+        for (Integer stepMap : context.getSequenceConfig().getStepMap().keySet()) {
+            if (context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser() != null &&
+                context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedAutenticator()
+                        .getApplicationAuthenticator() instanceof LocalApplicationAuthenticator) {
+                username = String.valueOf(context.getSequenceConfig().getStepMap().get(stepMap).getAuthenticatedUser());
+                break;
             }
-            return "a";
+        }
+        if (username != null) {
+            UserRealm userRealm = null;
+            try {
+                String tenantDomain = MultitenantUtils.getTenantDomain(username);
+                int tenantId = IdentityTenantUtil.getTenantIdOfUser(username);
+                RealmService realmService = IdentityTenantUtil.getRealmService();
+                userRealm = (UserRealm) realmService.getTenantUserRealm(tenantId);
+                username = MultitenantUtils.getTenantAwareUsername(username);
+                if (userRealm != null) {
+                    authyId = userRealm.getUserStoreManager().getUserClaimValue(username, AuthyConstants.AUTHY_ID_CLAIM_URI,
+                                                                                null).toString();
+                } else {
+                    throw new AuthenticationFailedException(
+                            "Cannot find the user claim for the given username");
+                }
+            } catch (org.wso2.carbon.user.api.UserStoreException e) {
+                throw new AuthenticationFailedException(
+                        "Cannot find the user claim for the given username");
+            }
+        }
+        return authyId;
     }
-
 
 
 }

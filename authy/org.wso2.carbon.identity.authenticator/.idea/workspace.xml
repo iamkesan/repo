@@ -38,29 +38,29 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+              <caret line="128" column="69" selection-start-line="128" selection-start-column="69" selection-end-line="128" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6831#6832#0" expanded="true" />
-                <element signature="e#6899#6900#0" expanded="true" />
+                <element signature="e#9192#9193#0" expanded="true" />
+                <element signature="e#9260#9261#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AuthySMSAuthenticator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AuthySMSAuthenticator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthySMSAuthenticator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.694291">
-              <caret line="209" column="21" selection-start-line="209" selection-start-column="21" selection-end-line="209" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="130" column="46" selection-start-line="130" selection-start-column="46" selection-end-line="130" selection-end-column="69" />
               <folding>
-                <element signature="e#0#10033#0" expanded="true" />
+                <element signature="e#0#9789#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#4978#4988#0" expanded="true" />
-                <element signature="e#7087#7088#0" expanded="true" />
-                <element signature="e#7162#7163#0" expanded="true" />
-                <element signature="e#7267#7268#0" expanded="true" />
-                <element signature="e#7333#7334#0" expanded="true" />
+                <element signature="e#5051#5061#0" expanded="true" />
+                <element signature="e#7311#7312#0" expanded="true" />
+                <element signature="e#7386#7387#0" expanded="true" />
+                <element signature="e#7491#7492#0" expanded="true" />
+                <element signature="e#7557#7558#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,19 +79,25 @@
       <file leaf-file-name="AuthyOneTouchAuthenticator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyOneTouchAuthenticator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
-              <folding />
+            <state vertical-scroll-proportion="-9.935484">
+              <caret line="164" column="73" selection-start-line="164" selection-start-column="73" selection-end-line="164" selection-end-column="73" />
+              <folding>
+                <element signature="e#10529#10530#0" expanded="true" />
+                <element signature="e#10601#10602#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AuthyAppTokenAuthenticator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AuthyAppTokenAuthenticator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyAppTokenAuthenticator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="126" column="37" selection-start-line="126" selection-start-column="37" selection-end-line="126" selection-end-column="66" />
-              <folding />
+            <state vertical-scroll-proportion="0.5349233">
+              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+              <folding>
+                <element signature="e#7007#7008#0" expanded="true" />
+                <element signature="e#7079#7080#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,7 +106,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyConstants.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
+              <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -122,7 +128,7 @@
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="80" selection-start-line="51" selection-start-column="80" selection-end-line="51" selection-end-column="80" />
+              <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -162,11 +168,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/internal/AuthyAuthenticatorServiceComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyTransactions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyOneTouchAuthenticator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyConstants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyAppTokenAuthenticator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthySMSAuthenticator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyOneTouchAuthenticator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyAppTokenAuthenticator.java" />
       </list>
     </option>
   </component>
@@ -352,6 +358,8 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -541,13 +549,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="7" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33958334" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35729167" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2498618" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -559,7 +567,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25096738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25096738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -585,19 +593,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java</url>
-          <line>59</line>
+          <line>64</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java</url>
-          <line>76</line>
+          <line>83</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java</url>
-          <line>81</line>
+          <line>88</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -627,25 +635,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java</url>
-          <line>82</line>
+          <line>89</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java</url>
-          <line>84</line>
+          <line>91</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java</url>
-          <line>87</line>
+          <line>94</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java</url>
-          <line>91</line>
+          <line>98</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
@@ -682,13 +690,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10033#0" expanded="true" />
+            <element signature="e#0#9789#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4978#4988#0" expanded="true" />
-            <element signature="e#7087#7088#0" expanded="true" />
-            <element signature="e#7162#7163#0" expanded="true" />
-            <element signature="e#7267#7268#0" expanded="true" />
-            <element signature="e#7333#7334#0" expanded="true" />
+            <element signature="e#5051#5061#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7386#7387#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7557#7558#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -742,13 +750,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10033#0" expanded="true" />
+            <element signature="e#0#9789#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4978#4988#0" expanded="true" />
-            <element signature="e#7087#7088#0" expanded="true" />
-            <element signature="e#7162#7163#0" expanded="true" />
-            <element signature="e#7267#7268#0" expanded="true" />
-            <element signature="e#7333#7334#0" expanded="true" />
+            <element signature="e#5051#5061#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7386#7387#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7557#7558#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -802,13 +810,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10033#0" expanded="true" />
+            <element signature="e#0#9789#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4978#4988#0" expanded="true" />
-            <element signature="e#7087#7088#0" expanded="true" />
-            <element signature="e#7162#7163#0" expanded="true" />
-            <element signature="e#7267#7268#0" expanded="true" />
-            <element signature="e#7333#7334#0" expanded="true" />
+            <element signature="e#5051#5061#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7386#7387#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7557#7558#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -862,13 +870,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="158" column="73" selection-start-line="158" selection-start-column="8" selection-end-line="158" selection-end-column="73" />
           <folding>
-            <element signature="e#0#10033#0" expanded="true" />
+            <element signature="e#0#9789#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4978#4988#0" expanded="true" />
-            <element signature="e#7087#7088#0" expanded="true" />
-            <element signature="e#7162#7163#0" expanded="true" />
-            <element signature="e#7267#7268#0" expanded="true" />
-            <element signature="e#7333#7334#0" expanded="true" />
+            <element signature="e#5051#5061#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7386#7387#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7557#7558#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -922,13 +930,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="90" column="9" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
           <folding>
-            <element signature="e#0#10033#0" expanded="true" />
+            <element signature="e#0#9789#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4978#4988#0" expanded="true" />
-            <element signature="e#7087#7088#0" expanded="true" />
-            <element signature="e#7162#7163#0" expanded="true" />
-            <element signature="e#7267#7268#0" expanded="true" />
-            <element signature="e#7333#7334#0" expanded="true" />
+            <element signature="e#5051#5061#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7386#7387#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7557#7558#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -982,13 +990,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
           <folding>
-            <element signature="e#0#10033#0" expanded="true" />
+            <element signature="e#0#9789#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4978#4988#0" expanded="true" />
-            <element signature="e#7087#7088#0" expanded="true" />
-            <element signature="e#7162#7163#0" expanded="true" />
-            <element signature="e#7267#7268#0" expanded="true" />
-            <element signature="e#7333#7334#0" expanded="true" />
+            <element signature="e#5051#5061#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7386#7387#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7557#7558#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1067,14 +1075,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="80" selection-start-line="51" selection-start-column="80" selection-end-line="51" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/identity/org.wso2.carbon.identity.application.authentication.framework/5.0.7/org.wso2.carbon.identity.application.authentication.framework-5.0.7.jar!/org/wso2/carbon/identity/application/authentication/framework/AbstractApplicationAuthenticator.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.9310346">
@@ -1103,54 +1103,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyAppTokenAuthenticator.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="126" column="37" selection-start-line="126" selection-start-column="37" selection-end-line="126" selection-end-column="66" />
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="86" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6831#6832#0" expanded="true" />
-            <element signature="e#6899#6900#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyOneTouchAuthenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
+          <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthySMSAuthenticator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.694291">
-          <caret line="209" column="21" selection-start-line="209" selection-start-column="21" selection-end-line="209" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="130" column="46" selection-start-line="130" selection-start-column="46" selection-end-line="130" selection-end-column="69" />
           <folding>
-            <element signature="e#0#10033#0" expanded="true" />
+            <element signature="e#0#9789#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#4978#4988#0" expanded="true" />
-            <element signature="e#7087#7088#0" expanded="true" />
-            <element signature="e#7162#7163#0" expanded="true" />
-            <element signature="e#7267#7268#0" expanded="true" />
-            <element signature="e#7333#7334#0" expanded="true" />
+            <element signature="e#5051#5061#0" expanded="true" />
+            <element signature="e#7311#7312#0" expanded="true" />
+            <element signature="e#7386#7387#0" expanded="true" />
+            <element signature="e#7491#7492#0" expanded="true" />
+            <element signature="e#7557#7558#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyPhoneAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="128" column="69" selection-start-line="128" selection-start-column="69" selection-end-line="128" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9192#9193#0" expanded="true" />
+            <element signature="e#9260#9261#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyOneTouchAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.935484">
+          <caret line="164" column="73" selection-start-line="164" selection-start-column="73" selection-end-line="164" selection-end-column="73" />
+          <folding>
+            <element signature="e#10529#10530#0" expanded="true" />
+            <element signature="e#10601#10602#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/wso2/carbon/identity/authenticator/authy/AuthyAppTokenAuthenticator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5349233">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="e#7007#7008#0" expanded="true" />
+            <element signature="e#7079#7080#0" expanded="true" />
           </folding>
         </state>
       </provider>
